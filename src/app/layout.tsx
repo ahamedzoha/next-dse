@@ -4,6 +4,7 @@ import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
 import './globals.css'
 import Seo from '@/components/seo'
+import Navbar from '@/components/navbar'
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -17,7 +18,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <head />
       <body>
         <CacheProvider>
-          <ChakraProvider>{children}</ChakraProvider>
+          <ChakraProvider>
+            <>
+              <Navbar />
+              {children}
+            </>
+          </ChakraProvider>
         </CacheProvider>
       </body>
     </html>
