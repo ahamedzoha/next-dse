@@ -1,4 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import Button from '@/components/button'
 
 export default function Home() {
   return (
@@ -59,11 +61,13 @@ export default function Home() {
         </svg>
         <div className='mx-auto max-w-7xl px-6 pt-10 pb-24 sm:pb-32 lg:flex lg:py-40 lg:px-8'>
           <div className='mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8'>
-            <img
-              className='h-11'
-              src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
+            {/* logo image */}
+            {/* <Image
+              src='/images/dark-project-app-screenshot.png'
               alt='Your Company'
-            />
+              width={100}
+              height={100}
+            /> */}
             <div className='mt-24 sm:mt-32 lg:mt-16'>
               <a href='#' className='inline-flex space-x-6'>
                 <span className='rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20'>
@@ -79,32 +83,29 @@ export default function Home() {
               </a>
             </div>
             <h1 className='mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl'>
-              Deploy to the cloud with confidence
+              Manage your stock portfolio with confidence
             </h1>
             <p className='mt-6 text-lg leading-8 text-gray-300'>
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
+              Manage your <strong>Dhaka Stock Exchange</strong> portfolio and
+              track your investments in a simple and easy way.
             </p>
             <div className='mt-10 flex items-center gap-x-6'>
-              <a
+              {/* <a
                 href='#'
                 className='rounded-md bg-indigo-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'
               >
                 Get started
-              </a>
-              <a
-                href='#'
-                className='text-base font-semibold leading-7 text-white'
-              >
+              </a> */}
+              <Button variant='primary'>Get started</Button>
+              <Button variant='secondary'>
                 Learn more <span aria-hidden='true'>→</span>
-              </a>
+              </Button>
             </div>
           </div>
           <div className='mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32'>
             <div className='max-w-3xl flex-none sm:max-w-5xl lg:max-w-none'>
-              <img
-                src='https://tailwindui.com/img/component-images/dark-project-app-screenshot.png'
+              <Image
+                src='/images/dark-project-app-screenshot.png'
                 alt='App screenshot'
                 width={2432}
                 height={1442}
