@@ -7,6 +7,14 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com',
+        port: '',
+        pathname: '**',
+      },
+    ],
     domains: ['azazahamed.com', 'dse.azazahamed.com', 'localhost'],
   },
 
