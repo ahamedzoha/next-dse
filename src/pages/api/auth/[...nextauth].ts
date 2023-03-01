@@ -11,6 +11,12 @@ import { cert } from 'firebase-admin/app'
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || ''
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || ''
 
+// Solution to resolve the \n issue for FIREBASE_PRIVATE_KEY
+const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY?.replace(
+  /\\n/gm,
+  '\n'
+)
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -22,7 +28,7 @@ export const authOptions: NextAuthOptions = {
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY,
+      privateKey: FIREBASE_PRIVATE_KEY,
     }),
   }),
 }
