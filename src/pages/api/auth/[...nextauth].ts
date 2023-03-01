@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { FirestoreAdapter } from '@next-auth/firebase-adapter'
-import { firestore } from '@/lib/firebase'
 import { cert } from 'firebase-admin/app'
+// import { firestore } from '@/lib/firebase'
 // import * as firestoreFunctions from 'firebase/firestore'
 
 // For more information on each option (and a full list of options) go to
@@ -11,7 +11,7 @@ import { cert } from 'firebase-admin/app'
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || ''
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || ''
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
@@ -25,4 +25,6 @@ export default NextAuth({
       privateKey: process.env.FIREBASE_PRIVATE_KEY,
     }),
   }),
-})
+}
+
+export default NextAuth(authOptions)

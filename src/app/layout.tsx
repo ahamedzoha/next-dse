@@ -1,9 +1,14 @@
 import './globals.css'
 import Seo from '@/components/seo'
-import Navbar from '@/components/navbar'
+import Navbar from '@/components/navigation/navbar'
 import SessionWrapper from '@/providers/session-provider'
+import { FC } from 'react'
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
       <Seo templateTitle='Home' pathname='/' />
