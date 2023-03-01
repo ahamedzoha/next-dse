@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import Button from '@/components/button'
 import UserManagement from '@/components/navigation/user-management'
+import NavItems from './nav-items'
 
 const Navbar = () => {
   const navigation: {
     name: string
     href: string
   }[] = [
-    // { name: 'Solutions', href: '#' },
+    { name: 'Dashboard', href: '/dashboard' },
     // { name: 'Pricing', href: '#' },
     // { name: 'Docs', href: '#' },
     // { name: 'Company', href: '#' },
@@ -22,30 +23,13 @@ const Navbar = () => {
               <h1 className='text-2xl text-white font-black'>StockFolio</h1>
             </Link>
             <div className='ml-10 hidden space-x-8 lg:block'>
-              {navigation.length > 0 &&
-                navigation.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className='text-base font-medium text-white hover:text-indigo-50'
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+              <NavItems />
             </div>
           </div>
           <UserManagement />
         </div>
         <div className='flex flex-wrap justify-center gap-x-6 py-4 lg:hidden'>
-          {navigation.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className='text-base font-medium text-white hover:text-indigo-50'
-            >
-              {link.name}
-            </a>
-          ))}
+          <NavItems />
         </div>
       </nav>
     </header>
