@@ -26,7 +26,15 @@ const UserManagement = () => {
   return (
     <div className='flex items-center ml-10 space-x-4'>
       {!session ? (
-        <Button onClick={async () => signIn()}>Sign in Using Google</Button>
+        <Button
+          onClick={async () =>
+            signIn('google', {
+              callbackUrl: `/dashboard`,
+            })
+          }
+        >
+          Sign in Using Google
+        </Button>
       ) : (
         // <Button onClick={async () => signIn()}>Sign in Using Google</Button>
         <>
@@ -67,7 +75,7 @@ const UserManagement = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      href='#'
+                      href='/dashboard'
                       className={clsxm(
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700'
@@ -81,10 +89,7 @@ const UserManagement = () => {
                   {({ active }) => (
                     <Link
                       href={'/'}
-                      onClick={() => {
-                        signOut()
-                        router.push('/')
-                      }}
+                      onClick={() => signOut({ callbackUrl: '/' })}
                       className={clsxm(
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700'
