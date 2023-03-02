@@ -2,11 +2,6 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { FirestoreAdapter } from '@next-auth/firebase-adapter'
 import { cert } from 'firebase-admin/app'
-// import { firestore } from '@/lib/firebase'
-// import * as firestoreFunctions from 'firebase/firestore'
-
-// For more information on each option (and a full list of options) go to
-// https://next-auth.js.org/configuration/options
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || ''
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || ''
@@ -18,6 +13,9 @@ const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY?.replace(
 )
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
