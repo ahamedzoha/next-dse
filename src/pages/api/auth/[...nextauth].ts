@@ -24,6 +24,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
   ],
+
   adapter: FirestoreAdapter({
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,

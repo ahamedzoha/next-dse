@@ -6,12 +6,11 @@ export const metadata = {
   keywords: 'Dashboard',
   robots: 'noindex, nofollow',
 }
-
-interface Props {
+interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
-const DashboardLayout: FC<Props> = ({ children }) => {
+const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   return <main className='flex-grow'>{children}</main>
 }
 
