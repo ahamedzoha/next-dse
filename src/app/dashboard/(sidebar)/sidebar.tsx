@@ -1,35 +1,42 @@
 'use client'
+
 import { useContext } from 'react'
 import { NavigationContext } from '@/contexts/navigation.context'
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
   UsersIcon,
   XMarkIcon,
+  ChartBarSquareIcon,
+  BriefcaseIcon,
 } from '@heroicons/react/24/outline'
 import clsxm from '@/lib/clsxm'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const Sidebar = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(NavigationContext)
+  const pathname = usePathname()
 
   const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-    { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-    { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-  ]
-  const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    {
+      name: 'Dashboard',
+      href: '/dashboard',
+      icon: ChartBarSquareIcon,
+      current: pathname === '/dashboard',
+    },
+    {
+      name: 'Portfolio',
+      href: '/dashboard/portfolio',
+      icon: BriefcaseIcon,
+      current: pathname === '/dashboard/portfolio',
+    },
+    {
+      name: 'Profile',
+      href: '/dashboard/profile',
+      icon: UsersIcon,
+      current: pathname === '/dashboard/profile',
+    },
   ]
 
   return (
@@ -62,7 +69,7 @@ const Sidebar = () => {
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'
             >
-              <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4'>
+              <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-gray-900 pt-5 pb-4'>
                 <Transition.Child
                   as={Fragment}
                   enter='ease-in-out duration-300'
@@ -96,22 +103,22 @@ const Sidebar = () => {
                 <div className='mt-5 h-0 flex-1 overflow-y-auto'>
                   <nav className='space-y-1 px-2'>
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={clsxm(
                           item.current
-                            ? 'bg-indigo-800 text-white'
-                            : 'text-indigo-100 hover:bg-indigo-600',
+                            ? 'bg-slate-800 text-white'
+                            : 'text-indigo-100 hover:bg-slate-600',
                           'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                         )}
                       >
                         <item.icon
-                          className='mr-4 h-6 w-6 flex-shrink-0 text-indigo-300'
+                          className='mr-4 h-6 w-6 flex-shrink-0 text-white'
                           aria-hidden='true'
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
@@ -127,7 +134,7 @@ const Sidebar = () => {
       {/* Static sidebar for desktop */}
       <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className='flex flex-grow flex-col overflow-y-auto bg-indigo-700 pt-5'>
+        <div className='flex flex-grow flex-col overflow-y-auto bg-gray-900 pt-5'>
           <div className='flex flex-shrink-0 items-center px-4'>
             <Link href='/'>
               <h1 className='text-2xl text-white font-black'>StockFolio</h1>
@@ -136,22 +143,22 @@ const Sidebar = () => {
           <div className='mt-5 flex flex-1 flex-col'>
             <nav className='flex-1 space-y-1 px-2 pb-4'>
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className={clsxm(
                     item.current
-                      ? 'bg-indigo-800 text-white'
-                      : 'text-indigo-100 hover:bg-indigo-600',
+                      ? 'bg-slate-800 text-white'
+                      : 'text-indigo-100 hover:bg-slate-600',
                     'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                   )}
                 >
                   <item.icon
-                    className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
+                    className='mr-3 h-6 w-6 flex-shrink-0 text-white'
                     aria-hidden='true'
                   />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

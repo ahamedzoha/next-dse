@@ -19,41 +19,51 @@ const Search = () => {
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
   ]
-  //   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
-    <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
+    <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-gray-800'>
       <button
         type='button'
-        className='border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden'
+        className='border-r border-slate-800 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden'
         onClick={() => setSidebarOpen(true)}
       >
         <span className='sr-only'>Open sidebar</span>
         <Bars3BottomLeftIcon className='h-6 w-6' aria-hidden='true' />
       </button>
       <div className='flex flex-1 justify-between px-4'>
-        <div className='flex flex-1'>
-          <form className='flex w-full md:ml-0' action='#' method='GET'>
-            <label htmlFor='search-field' className='sr-only'>
+        {/* Search */}
+        <div className='flex flex-1 items-center justify-center'>
+          <div className='w-full sm:max-w-lg'>
+            <label htmlFor='search' className='sr-only'>
               Search
             </label>
-            <div className='relative w-full text-gray-400 focus-within:text-gray-600'>
-              <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center'>
-                <MagnifyingGlassIcon className='h-5 w-5' aria-hidden='true' />
+            <div className='relative'>
+              <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
+                <MagnifyingGlassIcon
+                  className='h-5 w-5 text-gray-400'
+                  aria-hidden='true'
+                />
               </div>
               <input
-                id='search-field'
-                className='block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm'
+                id='search'
+                name='search'
+                className={clsxm(
+                  `block w-full rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 text-sm 
+                  placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 
+                focus:placeholder-gray-500 focus:outline-none focus:ring-white sm:text-sm`
+                )}
                 placeholder='Search'
                 type='search'
-                name='search'
               />
             </div>
-          </form>
+          </div>
         </div>
         <div className='ml-4 flex items-center md:ml-6'>
           <button
             type='button'
-            className='rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+            className={clsxm(
+              `rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 
+              focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`
+            )}
           >
             <span className='sr-only'>View notifications</span>
             <BellIcon className='h-6 w-6' aria-hidden='true' />
@@ -62,7 +72,13 @@ const Search = () => {
           {/* Profile dropdown */}
           <Menu as='div' className='relative ml-3'>
             <div>
-              <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+              <Menu.Button
+                className={clsxm(
+                  `flex max-w-xs items-center rounded-full 
+                  bg-white text-sm focus:outline-none focus:ring-2 
+                  focus:ring-indigo-500 focus:ring-offset-2`
+                )}
+              >
                 <span className='sr-only'>Open user menu</span>
                 <Image
                   className='h-8 w-8 rounded-full'

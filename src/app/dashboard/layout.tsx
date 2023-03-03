@@ -19,7 +19,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
       <div className='flex flex-1 flex-col md:pl-64'>
         <Search />
 
-        <div className='py-6'>
+        <div className='py-6 relative'>
           <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
             <div className='py-4'>
               <div className='h-96 rounded-lg border-4 border-dashed border-gray-200'>
