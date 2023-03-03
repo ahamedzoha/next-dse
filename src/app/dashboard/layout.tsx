@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Sidebar from '@/app/dashboard/(sidebar)/sidebar'
 import Search from '@/app/dashboard/(sidebar)/search'
+import NextNProgress from 'nextjs-progressbar'
 
 export const metadata = {
   title: 'Dashboard',
