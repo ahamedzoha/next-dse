@@ -1,10 +1,12 @@
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import Button from '@/components/button'
+import Navbar from '@/components/navigation/navbar'
 
 export default function Home() {
   return (
     <>
+      <Navbar />
       <div className='relative isolate overflow-hidden bg-gray-900'>
         <svg
           className='absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]'

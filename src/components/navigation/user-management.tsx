@@ -1,6 +1,5 @@
 'use client'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import { getServerSession } from 'next-auth/next'
+
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { signIn, useSession, signOut } from 'next-auth/react'
@@ -9,11 +8,9 @@ import Image from 'next/image'
 
 import clsxm from '@/lib/clsxm'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 const UserManagement = () => {
   const { data: session, status } = useSession()
-  const router = useRouter()
 
   if (status === 'loading') {
     return (
@@ -36,19 +33,13 @@ const UserManagement = () => {
           Sign in Using Google
         </Button>
       ) : (
-        // <Button onClick={async () => signIn()}>Sign in Using Google</Button>
         <>
           <h2 className='text-base text-white'>Hi, {session?.user?.name}</h2>
           <Menu as='div' className='relative ml-3'>
             <div>
               <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                 <span className='sr-only'>Open user menu</span>
-                {/* <img
-                  className='h-8 w-8 rounded-full'
-                  src={session?.user?.image}
-                  alt=''
-                
-                /> */}
+
                 <Image
                   className='h-8 w-8 rounded-full'
                   src={

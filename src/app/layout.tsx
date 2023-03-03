@@ -10,12 +10,12 @@ interface RootLayoutProps {
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang='en'>
+    <html lang='en' className='h-full bg-gray-800 text-white'>
       <Seo templateTitle='Home' pathname='/' />
       <head />
       <SessionWrapper>
-        <body>
-          <Navbar />
+        <body className='h-full '>
+          {/* <Navbar /> */}
           {children}
         </body>
       </SessionWrapper>
