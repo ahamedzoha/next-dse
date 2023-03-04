@@ -1,9 +1,5 @@
 const PortfolioPage = () => {
-  return (
-    <div>
-      <h1>Portfolio</h1>
-    </div>
-  )
+  return <div className='w-full'>Portfolio</div>
 }
 
 export default PortfolioPage

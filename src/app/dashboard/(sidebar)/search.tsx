@@ -7,11 +7,14 @@ import { Fragment } from 'react'
 import clsxm from '@/lib/clsxm'
 import { signIn, useSession, signOut } from 'next-auth/react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 
 const Search = () => {
   const { data: session, status } = useSession()
+  const pathname = usePathname()
 
   const { setSidebarOpen } = useContext(NavigationContext)
 
@@ -19,8 +22,15 @@ const Search = () => {
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
   ]
+
+  const toTitleCase = (str?: string) => {
+    return str?.replace(
+      /\w\S*/g,
+      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    )
+  }
   return (
-    <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-gray-800'>
+    <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-black'>
       <button
         type='button'
         className='border-r border-slate-800 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden'
@@ -29,10 +39,15 @@ const Search = () => {
         <span className='sr-only'>Open sidebar</span>
         <Bars3BottomLeftIcon className='h-6 w-6' aria-hidden='true' />
       </button>
-      <div className='flex flex-1 justify-between px-4'>
-        {/* Search */}
-        <div className='flex flex-1 items-center justify-center'>
-          <div className='w-full sm:max-w-lg'>
+      {/* The Bar */}
+      <div className='flex flex-col sm:flex-row flex-1 sm:justify-between justify-center items-center px-8'>
+        {/* Search and Current Page */}
+        <div className='flex flex-1 items-center justify-between'>
+          {/* Getting current page name */}
+          <h1 className='font-bold text-2xl'>
+            {toTitleCase(pathname?.split('/')[pathname?.split('/').length - 1])}
+          </h1>
+          <div className='w-full sm:max-w-sm'>
             <label htmlFor='search' className='sr-only'>
               Search
             </label>
@@ -61,8 +76,8 @@ const Search = () => {
           <button
             type='button'
             className={clsxm(
-              `rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 
-              focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`
+              `rounded-full bg-black p-1 text-gray-400 hover:text-gray-500 
+              focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2`
             )}
           >
             <span className='sr-only'>View notifications</span>
@@ -75,8 +90,8 @@ const Search = () => {
               <Menu.Button
                 className={clsxm(
                   `flex max-w-xs items-center rounded-full 
-                  bg-white text-sm focus:outline-none focus:ring-2 
-                  focus:ring-indigo-500 focus:ring-offset-2`
+                  bg-black text-sm focus:outline-none focus:ring-2 
+                  focus:ring-white focus:ring-offset-2`
                 )}
               >
                 <span className='sr-only'>Open user menu</span>
@@ -106,7 +121,7 @@ const Search = () => {
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
+                      <Link
                         href={item.href}
                         className={clsxm(
                           active ? 'bg-gray-100' : '',
@@ -114,14 +129,14 @@ const Search = () => {
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))}
 
                 <Menu.Item>
                   {({ active }) => (
-                    <a
+                    <Link
                       href={'/'}
                       onClick={() => signOut({ callbackUrl: '/' })}
                       className={clsxm(
@@ -130,7 +145,7 @@ const Search = () => {
                       )}
                     >
                       Sign out
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
               </Menu.Items>

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className='relative isolate overflow-hidden bg-gray-900'>
+      <div className='relative isolate overflow-hidden bg-black'>
         <svg
           className='absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]'
           aria-hidden='true'
@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
       {/* Section */}
-      <div className='relative isolate overflow-hidden bg-gray-900'>
+      <div className='relative isolate overflow-hidden bg-black'>
         <div className='py-24 px-6 sm:px-6 sm:py-32 lg:px-8'>
           <div className='mx-auto max-w-2xl text-center'>
             <h2 className='text-4xl font-bold tracking-tight text-white'>

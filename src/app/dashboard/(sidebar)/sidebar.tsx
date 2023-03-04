@@ -69,7 +69,7 @@ const Sidebar = () => {
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'
             >
-              <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-gray-900 pt-5 pb-4'>
+              <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-zinc-900 pt-5 pb-4'>
                 <Transition.Child
                   as={Fragment}
                   enter='ease-in-out duration-300'
@@ -108,8 +108,8 @@ const Sidebar = () => {
                         href={item.href}
                         className={clsxm(
                           item.current
-                            ? 'bg-slate-800 text-white'
-                            : 'text-indigo-100 hover:bg-slate-600',
+                            ? 'bg-zinc-600 text-white font-bold'
+                            : 'text-indigo-100 hover:bg-zinc-800',
                           'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                         )}
                       >
@@ -134,7 +134,7 @@ const Sidebar = () => {
       {/* Static sidebar for desktop */}
       <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col'>
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className='flex flex-grow flex-col overflow-y-auto bg-gray-900 pt-5'>
+        <div className='flex flex-grow flex-col overflow-y-auto bg-zinc-900 pt-5'>
           <div className='flex flex-shrink-0 items-center px-4'>
             <Link href='/'>
               <h1 className='text-2xl text-white font-black'>StockFolio</h1>
@@ -148,9 +148,9 @@ const Sidebar = () => {
                   href={item.href}
                   className={clsxm(
                     item.current
-                      ? 'bg-slate-800 text-white'
-                      : 'text-indigo-100 hover:bg-slate-600',
-                    'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      ? 'bg-zinc-600 text-white font-bold'
+                      : 'text-indigo-100 hover:bg-zinc-800',
+                    'group flex items-center px-2 py-2 text-sm font-medium rounded-lg'
                   )}
                 >
                   <item.icon
