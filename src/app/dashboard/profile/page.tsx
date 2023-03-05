@@ -11,7 +11,7 @@ const getUser = async () => {
 const Home = async () => {
   const user = await getUser()
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <div className='w-full flex flex-1'>
