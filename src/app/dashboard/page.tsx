@@ -21,6 +21,10 @@ const getStockData = async (userId: string) => {
   return data
 }
 
+export const metadata = {
+  title: 'Dashboard',
+}
+
 const Dashboard = async () => {
   const session = await getServerSession(authOptions)
   const userId = session?.user?.id
@@ -30,7 +34,7 @@ const Dashboard = async () => {
   return (
     <div className=''>
       <div className='overflow-x-hidden mxkey'>
-        <div className='py-12 animate-marqueeReverse whitespace-nowrap '>
+        <div className='py-12 animate-marquee whitespace-nowrap '>
           <span className='text-4xl mx-4'>Marquee Item 1</span>
           <span className='text-4xl mx-4'>Marquee Item 2</span>
           <span className='text-4xl mx-4'>Marquee Item 3</span>
