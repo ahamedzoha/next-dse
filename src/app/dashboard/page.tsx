@@ -2,30 +2,112 @@ import { getStockData } from '@/lib/firestore/get-latest-data'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import TickerItems from '@/components/ticker-items'
+import Marquee from 'react-fast-marquee'
 
 export const metadata = {
   title: 'Dashboard',
 }
 
 const Dashboard = async () => {
-  const session = await getServerSession(authOptions)
+  // const session = await getServerSession(authOptions)
 
-  const { data: tickerdata, timestamp } = await getStockData(session?.user?.id)
+  // const { data: tickerdata, timestamp } = await getStockData(session?.user?.id)
 
-  console.log(tickerdata)
+  const stats = [
+    {
+      name: '1JANATAMF',
+      prices: {
+        trade: 0,
+        ycp: 6.1,
+        closep: 6.1,
+        low: 0,
+        high: 0,
+        current: 0,
+        changePercent: NaN,
+        changed: NaN,
+        volume: 0,
+        value: 0,
+      },
+    },
+    {
+      name: '1STPRIMFMF',
+      prices: {
+        ycp: 13.8,
+        changed: 0,
+        trade: 84,
+        value: 1.15,
+        volume: 83,
+        closep: 13.8,
+        high: 14,
+        low: 13.8,
+        current: 13.8,
+        changePercent: 0,
+      },
+    },
+    {
+      name: 'AAMRANET',
+      prices: {
+        low: 64,
+        changed: -1.1,
+        value: 181.58,
+        ycp: 65.6,
+        closep: 64.5,
+        high: 66.7,
+        trade: 2,
+        volume: 2,
+        current: 64.5,
+        changePercent: -1.71,
+      },
+    },
+    {
+      name: 'AAMRATECH',
+      prices: {
+        current: 37,
+        changePercent: -1.89,
+        volume: 1,
+        high: 38.1,
+        ycp: 37.7,
+        low: 36.9,
+        closep: 37,
+        value: 62.205,
+        changed: -0.7,
+        trade: 905,
+      },
+    },
+    {
+      name: 'ABB1STMF',
+      prices: {
+        changePercent: NaN,
+        current: 0,
+        closep: 5.2,
+        volume: 0,
+        trade: 0,
+        low: 0,
+        value: 0,
+        changed: NaN,
+        ycp: 5.2,
+        high: 0,
+      },
+    },
+  ]
+
+  // console.log(tickerdata.splice(0, 5))
 
   return (
     <div className=''>
       {/*  */}
       <div className='overflow-x-hidden bg-zinc-900 rounded-lg '>
-        <div className='py-4  flex flex-nowrap '>
-          {/* stock ticker element*/}
+        {/* <div className='py-4 animate-marquee flex flex-nowrap space-x-8 '>
           {tickerdata.map((item) => (
             <TickerItems key={item.name} data={item} />
           ))}
+        </div> */}
 
-          {/*  */}
-        </div>
+        <Marquee gradient={false} speed={100}>
+          {stats.map((item) => (
+            <TickerItems key={item.name} data={item} />
+          ))}
+        </Marquee>
       </div>
     </div>
   )
