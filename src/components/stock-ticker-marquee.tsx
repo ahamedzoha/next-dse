@@ -30,7 +30,6 @@ const StockTickerMarquee: FC<StockTickerMarqueeProps> = ({ data }) => {
         gradient={false}
         speed={100}
         play={play}
-        pauseOnHover={true}
         delay={2}
         direction={direction}
       >
