@@ -30,6 +30,21 @@ export const authOptions: NextAuthOptions = {
       privateKey: FIREBASE_PRIVATE_KEY,
     }),
   }),
+
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.sub
+      }
+      return session
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.sub = user.id
+      }
+      return token
+    },
+  },
 }
 
 export default NextAuth(authOptions)
