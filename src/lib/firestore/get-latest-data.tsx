@@ -42,3 +42,82 @@ export const getStockData = async (
 
   return latestData
 }
+
+// DUMMY RESPONSE
+// const stats = [
+//   {
+//     name: '1JANATAMF',
+//     prices: {
+//       trade: 0,
+//       ycp: 6.1,
+//       closep: 6.1,
+//       low: 0,
+//       high: 0,
+//       current: 0,
+//       changePercent: NaN,
+//       changed: NaN,
+//       volume: 0,
+//       value: 0,
+//     },
+//   },
+//   {
+//     name: '1STPRIMFMF',
+//     prices: {
+//       ycp: 13.8,
+//       changed: 0,
+//       trade: 84,
+//       value: 1.15,
+//       volume: 83,
+//       closep: 13.8,
+//       high: 14,
+//       low: 13.8,
+//       current: 13.8,
+//       changePercent: 0,
+//     },
+//   },
+//   {
+//     name: 'AAMRANET',
+//     prices: {
+//       low: 64,
+//       changed: -1.1,
+//       value: 181.58,
+//       ycp: 65.6,
+//       closep: 64.5,
+//       high: 66.7,
+//       trade: 2,
+//       volume: 2,
+//       current: 64.5,
+//       changePercent: -1.71,
+//     },
+//   },
+//   {
+//     name: 'AAMRATECH',
+//     prices: {
+//       current: 37,
+//       changePercent: -1.89,
+//       volume: 1,
+//       high: 38.1,
+//       ycp: 37.7,
+//       low: 36.9,
+//       closep: 37,
+//       value: 62.205,
+//       changed: -0.7,
+//       trade: 905,
+//     },
+//   },
+//   {
+//     name: 'ABB1STMF',
+//     prices: {
+//       changePercent: NaN,
+//       current: 0,
+//       closep: 5.2,
+//       volume: 0,
+//       trade: 0,
+//       low: 0,
+//       value: 0,
+//       changed: NaN,
+//       ycp: 5.2,
+//       high: 0,
+//     },
+//   },
+// ]
