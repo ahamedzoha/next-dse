@@ -18,7 +18,7 @@ export const getStockData = async (
 
   const querySnapshot = await stocksRef
     .orderBy('timestamp', 'desc')
-    .limit(1)
+    .limit(3)
     .get()
 
   if (querySnapshot.empty) {
@@ -26,7 +26,9 @@ export const getStockData = async (
   }
 
   const latestData: LatestStockData = { data: [], timestamp: null }
-  const stockData = querySnapshot.docs[0].data()
+  const stockData = querySnapshot.docs[1].data()
+
+  // console.log(stockData)
 
   for (const key in stockData) {
     if (key !== 'timestamp') {
