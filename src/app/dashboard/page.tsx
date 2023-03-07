@@ -1,7 +1,9 @@
 import { getStockData } from '@/lib/firestore/get-latest-data'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import StockTickerMarquee from '@/components/stock-ticker-marquee'
+import StockTickerMarquee from '@/components/dashboard/stock-ticker-marquee'
+import Overviews from '@/components/dashboard/overviews'
+import ValueOverviews from '@/components/dashboard/value-overviews'
 
 export const metadata = {
   title: 'Dashboard',
@@ -15,6 +17,8 @@ const Dashboard = async () => {
   return (
     <div className=''>
       <StockTickerMarquee data={tickerdata} />
+      <Overviews />
+      <ValueOverviews />
     </div>
 
     // loading shimmer
