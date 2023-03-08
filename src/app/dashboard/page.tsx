@@ -1,8 +1,5 @@
 import { getStockData } from '@/lib/firestore/get-latest-stock-data'
-import {
-  getMarketInfoData,
-  MarketIndexes,
-} from '@/lib/firestore/get-latest-market-info-data'
+
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import StockTickerMarquee from '@/components/dashboard/stock-ticker-marquee'
@@ -13,17 +10,20 @@ export const metadata = {
   title: 'Dashboard',
 }
 
+export const revalidate = 10
+
 const Dashboard = async () => {
   const session = await getServerSession(authOptions)
 
   const { data: tickerdata, timestamp } = await getStockData(session?.user?.id)
-  const marketdata = await getMarketInfoData(MarketIndexes.DSEX)
 
-  console.log(marketdata)
+  const { body } = await fetch(`${process.env.URL}/api/testapi`)
+  console.log(body)
 
   return (
     <div className=''>
       <StockTickerMarquee data={tickerdata} />
+      {/* @ts-expect-error Async Server Component */}
       <Overviews />
       <ValueOverviews />
     </div>
