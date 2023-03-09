@@ -6,8 +6,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
   try {
-    const response = await getMarketInfoData(MarketIndexes.DSEX)
+    const searchParams = new URLSearchParams(req.nextUrl.search)
+    const index = searchParams.get('index') as MarketIndexes
+    console.log(index)
 
+    const response = await getMarketInfoData(index)
     return NextResponse.json(response)
 
     // return response.

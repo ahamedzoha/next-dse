@@ -6,20 +6,35 @@ import { DashboardContext, MarketIndexes } from '@/contexts/dashboard.context'
 import clsxm from '@/lib/clsxm'
 
 const MarketIndex = () => {
-  const { allMarketIndexes, activeMarketIndex, setActiveMarketIndex } =
-    useContext(DashboardContext)
+  const {
+    allMarketIndexes,
+    activeMarketIndex,
+    setActiveMarketIndex,
+    activeMarketData,
+  } = useContext(DashboardContext)
+
+  const handleMarketIndexChange = (index: number) => {
+    switch (index) {
+      case 0:
+        setActiveMarketIndex(MarketIndexes.DS30)
+        break
+      case 1:
+        setActiveMarketIndex(MarketIndexes.DSES)
+        break
+      case 2:
+        setActiveMarketIndex(MarketIndexes.DSEX)
+        break
+      default:
+        setActiveMarketIndex(MarketIndexes.DS30)
+        break
+    }
+  }
 
   return (
     <div className='bg-zinc-900 h-96 rounded-lg'>
       {/* container */}
       <div className='w-full h-full px-4 py-4'>
-        <Tab.Group
-          onChange={(index) => {
-            if (index === 0) setActiveMarketIndex(MarketIndexes.DS30)
-            if (index === 1) setActiveMarketIndex(MarketIndexes.DSES)
-            if (index === 2) setActiveMarketIndex(MarketIndexes.DSEX)
-          }}
-        >
+        <Tab.Group onChange={handleMarketIndexChange}>
           <Tab.List className='flex p-1 space-x-1 bg-black rounded-xl w-64'>
             {allMarketIndexes.map((item, index) => (
               <Tab
@@ -40,11 +55,11 @@ const MarketIndex = () => {
             ))}
           </Tab.List>
           <Tab.Panels className='mt-4 '>
-            {allMarketIndexes.map((item, index) => (
-              <Tab.Panel key={index}>
+            {allMarketIndexes.map((marketIndex, indexPosition) => (
+              <Tab.Panel key={indexPosition}>
                 <div className='flex w-full h-full flex-col space-y-2'>
-                  <h2>asdasd</h2>
-                  {/* <DataTable item={item} /> */}
+                  <h2>{`${marketIndex}`.toUpperCase()}</h2>
+                  {/* <DataTable item={marketIndex} /> */}
                 </div>
               </Tab.Panel>
             ))}

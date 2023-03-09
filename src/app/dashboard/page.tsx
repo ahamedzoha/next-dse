@@ -28,11 +28,6 @@ const Dashboard = async () => {
       <Overviews />
       <ValueOverviews />
     </div>
-
-    // loading shimmer
-    // <div className='w-full h-14'>
-    //   <div className=' w-full h-16 bg-zinc-900 rounded-lg animate-pulse'></div>
-    // </div>
   )
 }
 
