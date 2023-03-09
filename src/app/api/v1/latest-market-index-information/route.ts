@@ -4,11 +4,13 @@ import {
 } from '@/lib/firestore/get-latest-market-info-data'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const marketInfoData = await getMarketInfoData(MarketIndexes.DSEX)
+    const response = await getMarketInfoData(MarketIndexes.DSEX)
 
-    return NextResponse.json({ body: marketInfoData })
+    return NextResponse.json(response)
+
+    // return response.
   } catch (error) {
     console.error(error)
     return NextResponse.error()

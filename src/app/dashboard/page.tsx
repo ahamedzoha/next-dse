@@ -17,8 +17,9 @@ const Dashboard = async () => {
 
   const { data: tickerdata, timestamp } = await getStockData(session?.user?.id)
 
-  const { body } = await fetch(`${process.env.URL}/api/testapi`)
-  console.log(body)
+  // const data = await fetch(`${process.env.URL}/api/testapi`)
+  // const responseData = await data.json()
+  // console.log(responseData)
 
   return (
     <div className=''>

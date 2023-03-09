@@ -2,6 +2,7 @@
 import { SessionProvider } from 'next-auth/react'
 import { FC } from 'react'
 import { NavigationContextProvider } from '@/contexts/navigation.context'
+import { DashboardContextProvider } from '@/contexts/dashboard.context'
 
 interface SessionWrapperProps {
   children: React.ReactNode
@@ -10,7 +11,9 @@ interface SessionWrapperProps {
 const SessionWrapper: FC<SessionWrapperProps> = ({ children }) => {
   return (
     <SessionProvider>
-      <NavigationContextProvider>{children}</NavigationContextProvider>
+      <NavigationContextProvider>
+        <DashboardContextProvider>{children}</DashboardContextProvider>
+      </NavigationContextProvider>
     </SessionProvider>
   )
 }

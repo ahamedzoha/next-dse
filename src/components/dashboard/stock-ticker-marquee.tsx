@@ -1,5 +1,4 @@
 'use client'
-
 import TickerItems from '@/components/dashboard/ticker-items'
 import Marquee from 'react-fast-marquee'
 import { StockData } from '@/lib/types'
