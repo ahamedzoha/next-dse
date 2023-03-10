@@ -9,9 +9,9 @@ import React, {
 import { MarketInfoData } from '@/lib/types'
 
 export enum MarketIndexes {
-  DS30 = 'ds30index',
-  DSES = 'dsesindex',
   DSEX = 'dsexindex',
+  DSES = 'dsesindex',
+  DS30 = 'ds30index',
 }
 
 interface CachedMarketData {
@@ -20,9 +20,9 @@ interface CachedMarketData {
 }
 
 const cache: Record<MarketIndexes, CachedMarketData> = {
-  [MarketIndexes.DS30]: { data: [], timestamp: 0 },
-  [MarketIndexes.DSES]: { data: [], timestamp: 0 },
   [MarketIndexes.DSEX]: { data: [], timestamp: 0 },
+  [MarketIndexes.DSES]: { data: [], timestamp: 0 },
+  [MarketIndexes.DS30]: { data: [], timestamp: 0 },
 }
 
 type Action =
@@ -53,7 +53,7 @@ interface DashboardContextProviderProps {
   children: React.ReactNode
 }
 
-const CACHE_TTL = 300 // cache time-to-live in seconds
+const CACHE_TTL = 20 // cache time-to-live in seconds
 
 export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
   children,
@@ -100,6 +100,8 @@ export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
 
   useEffect(() => {
     getData()
+    const intervalId = setInterval(getData, CACHE_TTL * 1000)
+    return () => clearInterval(intervalId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.activeMarketIndex])
 

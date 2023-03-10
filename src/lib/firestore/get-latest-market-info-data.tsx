@@ -14,17 +14,38 @@ export const getMarketInfoData = async (
   try {
     const db = app.firestore()
 
-    const now = new Date() // Current date and time in local timezone
-    const tzOffset = 6 * 60 // GMT+6 offset in minutes
-    const startOfToday = new Date(now.valueOf() + tzOffset * 60000)
-    startOfToday.setHours(0, 0, 0, 0) // Set to beginning of day in GMT+6 timezone
-    const endOfToday = new Date(now.valueOf() + tzOffset * 60000)
-    endOfToday.setHours(23, 59, 59, 999) // Set to end of day in GMT+6 timezone
+    const now = new Date()
+    const UTC_OFFSET = 6 // UTC offset for Bangladesh time
+    const startHour = 10
+    const endHour = 15
+    // Get the start of today based on GMT+6 and set the hour to 10am
+    const startOfToday = new Date(
+      Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        startHour + UTC_OFFSET,
+        0,
+        0
+      )
+    )
+    // Get the end of today based on GMT+6 and set the hour to 3pm
+    const endOfToday = new Date(
+      Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        endHour + UTC_OFFSET,
+        0,
+        0
+      )
+    )
 
     const querySnapshot = await db
       .collection(`/market-indexes/${index}/index-data`)
       .where('timestamp', '>=', startOfToday)
       .where('timestamp', '<=', endOfToday)
+      .orderBy('timestamp', 'desc')
       .get()
 
     const latestData: MarketInfoData = querySnapshot.docs.map((doc) => {

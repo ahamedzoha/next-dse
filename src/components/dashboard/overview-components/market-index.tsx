@@ -2,41 +2,57 @@
 
 import { Tab } from '@headlessui/react'
 import { Fragment, useState, useContext } from 'react'
-import { DashboardContext, MarketIndexes } from '@/contexts/dashboard.context'
+import {
+  DashboardContext,
+  MarketIndexes,
+} from '@/contexts/dashboard-overview.context'
 import clsxm from '@/lib/clsxm'
 
 const MarketIndex = () => {
-  const {
-    allMarketIndexes,
-    activeMarketIndex,
-    setActiveMarketIndex,
-    activeMarketData,
-  } = useContext(DashboardContext)
+  const { state, dispatch } = useContext(DashboardContext)
+
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const handleMarketIndexChange = (index: number) => {
     switch (index) {
       case 0:
-        setActiveMarketIndex(MarketIndexes.DS30)
+        dispatch({
+          type: 'SET_ACTIVE_MARKET_INDEX',
+          payload: MarketIndexes.DSEX,
+        })
         break
       case 1:
-        setActiveMarketIndex(MarketIndexes.DSES)
+        dispatch({
+          type: 'SET_ACTIVE_MARKET_INDEX',
+          payload: MarketIndexes.DSES,
+        })
         break
       case 2:
-        setActiveMarketIndex(MarketIndexes.DSEX)
+        dispatch({
+          type: 'SET_ACTIVE_MARKET_INDEX',
+          payload: MarketIndexes.DS30,
+        })
         break
       default:
-        setActiveMarketIndex(MarketIndexes.DS30)
+        dispatch({
+          type: 'SET_ACTIVE_MARKET_INDEX',
+          payload: MarketIndexes.DSEX,
+        })
         break
     }
+    setActiveIndex(index)
   }
 
   return (
     <div className='bg-zinc-900 h-96 rounded-lg'>
       {/* container */}
       <div className='w-full h-full px-4 py-4'>
-        <Tab.Group onChange={handleMarketIndexChange}>
+        <Tab.Group
+          selectedIndex={activeIndex}
+          onChange={handleMarketIndexChange}
+        >
           <Tab.List className='flex p-1 space-x-1 bg-black rounded-xl w-64'>
-            {allMarketIndexes.map((item, index) => (
+            {state.allMarketIndexes.map((item, index) => (
               <Tab
                 key={index}
                 className={({ selected }) =>
@@ -55,7 +71,7 @@ const MarketIndex = () => {
             ))}
           </Tab.List>
           <Tab.Panels className='mt-4 '>
-            {allMarketIndexes.map((marketIndex, indexPosition) => (
+            {state.allMarketIndexes.map((marketIndex, indexPosition) => (
               <Tab.Panel key={indexPosition}>
                 <div className='flex w-full h-full flex-col space-y-2'>
                   <h2>{`${marketIndex}`.toUpperCase()}</h2>
@@ -65,9 +81,6 @@ const MarketIndex = () => {
             ))}
           </Tab.Panels>
         </Tab.Group>
-      </div>
-      <div className='w-full h-full px-4 py-4'>
-        {/* <Tab.Group defaultIndex={}> */}
       </div>
     </div>
   )
