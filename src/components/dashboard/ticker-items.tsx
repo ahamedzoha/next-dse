@@ -22,12 +22,16 @@ const TickerItems: FC<TickerItemsProps> = ({ data }) => {
       <div className='flex flex-col  w-full space-y-2'>
         <div className='flex justify-between items-center'>
           <span className='text-sm font-bold pr-2'>{name}</span>
-          <PriceIndicator changePercentage={changePercent} />
+          <PriceIndicator
+            changePercentage={parseFloat(Number(changePercent).toFixed(2))}
+          />
         </div>
-        <div className='flex justify-between'>
-          <span className='text-sm'>৳{current}</span>
+        <div className='flex justify-between items-center'>
+          <span className='text-sm'>৳{current.toFixed(2)}</span>
 
-          <span className='text-xs pr-2'>{changed === null ? 0 : changed}</span>
+          <span className='text-xs pr-2'>
+            {changed === null ? '0.00' : changed.toFixed(2)}
+          </span>
         </div>
       </div>
     </div>
@@ -71,7 +75,7 @@ const PriceIndicator = ({ changePercentage }: { changePercentage: number }) => {
       )}
 
       <span className='text-xs'>
-        {changePercentage === null ? 0.0 : changePercentage}%
+        {changePercentage === null ? 0.0 : changePercentage.toFixed(2)}%
       </span>
     </div>
   )

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import { getStockData } from '@/lib/firestore/get-latest-data'
+import { getStockData } from '@/lib/firestore/get-latest-stock-data'
 
 const URL = process.env.URL
 

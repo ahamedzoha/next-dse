@@ -100,6 +100,11 @@ const Sidebar = () => {
                     </h1>
                   </Link>
                 </div>
+                <div className='flex flex-shrink-0 items-center px-4 mt-8'>
+                  <span className='text-xs text-white/40 font-medium'>
+                    MENU
+                  </span>
+                </div>
                 <div className='mt-5 h-0 flex-1 overflow-y-auto'>
                   <nav className='space-y-1 px-2'>
                     {navigation.map((item) => (
@@ -139,6 +144,9 @@ const Sidebar = () => {
             <Link href='/'>
               <h1 className='text-2xl text-white font-black'>StockFolio</h1>
             </Link>
+          </div>
+          <div className='flex flex-shrink-0 items-center px-4 mt-8'>
+            <span className='text-xs text-white/40 font-medium'>MENU</span>
           </div>
           <div className='mt-5 flex flex-1 flex-col'>
             <nav className='flex-1 space-y-1 px-2 pb-4'>
