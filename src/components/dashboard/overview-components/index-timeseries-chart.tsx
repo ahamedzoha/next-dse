@@ -26,37 +26,34 @@ const IndexTimeSeriesChart: FC<IndexTimeSeriesChart> = ({ marketData }) => {
   //   console.log(data)
 
   return (
-    <div className='h-72 text-black'>
+    <div className='h-64 text-black my-6'>
       <ResponsiveLine
         data={[{ id: 'Index Value', data }]}
-        margin={{ top: 5, right: 5, bottom: 70, left: 40 }}
+        margin={{ top: 5, right: 5, bottom: 20, left: 40 }}
+        tooltipFormat={(value) => `x${value}`}
         xScale={{ type: 'time', format: '%Y-%m-%dT%H:%M:%S.%LZ' }}
         xFormat='time:%H:%M'
         yScale={{
           type: 'linear',
           min: 'auto',
-          max: 'auto',
+          // max: 'auto',
           stacked: true,
-          reverse: false,
         }}
         enableArea={true}
-        curve='monotoneX'
-        axisTop={null}
-        axisRight={null}
+        areaOpacity={0.1}
+        curve='linear'
         yFormat=' >-.2f'
         axisBottom={{
           format: '%H:%M',
           tickValues: 'every 1 hour',
-          legend: 'Time',
-          legendOffset: 36,
+          legendOffset: 30,
           legendPosition: 'middle',
         }}
         axisLeft={{
           tickValues: 5,
-          //   legend: 'Index Value',
-          //   legendOffset: -40,
           legendPosition: 'middle',
         }}
+        enableGridX={false}
         theme={{
           axis: {
             ticks: {
@@ -64,20 +61,21 @@ const IndexTimeSeriesChart: FC<IndexTimeSeriesChart> = ({ marketData }) => {
                 stroke: '#ffffff',
               },
               text: {
-                fill: '#ffffff',
-              },
-            },
-            legend: {
-              text: {
-                fill: '#ffffff',
+                fill: '#ffffff65',
               },
             },
           },
 
           grid: {
             line: {
-              stroke: 'rgba(255, 255, 255, 0.068)',
+              stroke: 'rgba(255, 255, 255, 0.027)',
               strokeWidth: 1,
+            },
+          },
+
+          crosshair: {
+            line: {
+              stroke: '#ffffff',
             },
           },
 
@@ -86,51 +84,8 @@ const IndexTimeSeriesChart: FC<IndexTimeSeriesChart> = ({ marketData }) => {
               background: '#ffffff',
             },
           },
-
-          crosshair: {
-            line: {
-              stroke: '#ffffff',
-              strokeDasharray: '4 4',
-            },
-          },
-
-          legends: {
-            text: {
-              fill: '#ffffff',
-            },
-          },
-
-          labels: {
-            text: {
-              fill: '#ffffff',
-            },
-          },
-
-          dots: {
-            text: {
-              fill: '#ffffff',
-            },
-          },
-
-          markers: {
-            text: {
-              fill: '#ffffff',
-            },
-          },
-
-          annotations: {
-            text: {
-              fill: '#ffffff',
-            },
-          },
         }}
-        colors={{ scheme: 'dark2' }}
-        lineWidth={2}
-        pointSize={4}
-        pointColor={{ theme: 'background' }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
-        pointLabelYOffset={-12}
+        colors={['#ffffff']}
         useMesh={true}
       />
     </div>

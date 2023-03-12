@@ -35,7 +35,7 @@ export const getMarketInfoData = async (
       .collection(`/market-indexes/${index}/index-data`)
       .where('timestamp', '>=', startOfToday)
       .orderBy('timestamp', 'desc')
-      .limit(60)
+      .limit(150)
       .get()
 
     const latestData: MarketInfoData = querySnapshot.docs.map((doc) => {

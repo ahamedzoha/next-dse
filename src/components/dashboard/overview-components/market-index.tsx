@@ -9,6 +9,8 @@ import {
 import clsxm from '@/lib/clsxm'
 import IndexTimeSeriesChart from './index-timeseries-chart'
 
+import { MarketInfoDataType } from '@/lib/types'
+
 const MarketIndex = () => {
   const { state, dispatch } = useContext(DashboardContext)
 
@@ -74,7 +76,7 @@ const MarketIndex = () => {
           <Tab.Panels className='mt-4 '>
             {state.allMarketIndexes.map((marketIndex, indexPosition) => (
               <Tab.Panel key={indexPosition}>
-                <div className='flex w-full h-full flex-col space-y-2'>
+                <div className='flex w-full  flex-col space-y-2'>
                   {/* <h2>{`${marketIndex}`.toUpperCase()}</h2> */}
 
                   {state.loading ? (
@@ -82,11 +84,8 @@ const MarketIndex = () => {
                   ) : (
                     <IndexTimeSeriesChart marketData={state.activeMarketData} />
                   )}
-                  <div className='w-full'>
-                    <span>text</span>
-                  </div>
 
-                  {/* <DataTable item={marketIndex} /> */}
+                  <DataTable marketData={state.activeMarketData} />
                 </div>
               </Tab.Panel>
             ))}
@@ -145,62 +144,40 @@ const MarketIndex = () => {
 //   },
 // ]
 
-// const DataTable = ({
-//   item,
-// }: {
-//   item: {
-//     indexName: string
-//     totalTrade: {
-//       value1: number
-//       value2: number
-//     }
-//     totalVolume: {
-//       value1: number
-//       value2: number
-//     }
-//     totalVolumeMn: {
-//       value1: number
-//       value2: number
-//     }
-//   }
-// }) => {
-//   return (
-//     <div className='w-full  bg-black rounded-lg border-collapse border border-zinc-800'>
-//       <table className='w-full h-full bg-black p-2 border-collapse rounded-lg '>
-//         <tr className='text-xs font-bold text-zinc-500 text-left'>
-//           <th className='pl-2 w-1/3 border-b border-zinc-800 py-2'>
-//             Total Trade
-//           </th>
-//           <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
-//             {item.totalTrade.value1}
-//           </td>
-//           <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
-//             {item.totalTrade.value2}
-//           </td>
-//         </tr>
-//         <tr className='text-xs font-bold text-zinc-500 text-left'>
-//           <th className='pl-2 w-1/3 py-2 border-b border-zinc-800'>
-//             Total Volume
-//           </th>
-//           <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
-//             {item.totalVolume.value1}
-//           </td>
-//           <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
-//             {item.totalVolume.value2}
-//           </td>
-//         </tr>
-//         <tr className='text-xs font-bold text-zinc-500 text-left'>
-//           <th className='pl-2 w-1/3 py-2 '>Total Volume Mn</th>
-//           <td className='pl-2 w-1/3 py-2 bg-zinc-900/50'>
-//             {item.totalVolumeMn.value1}
-//           </td>
-//           <td className='pl-2 w-1/3 py-2 bg-zinc-900/50'>
-//             {item.totalVolumeMn.value2}
-//           </td>
-//         </tr>
-//       </table>
-//     </div>
-//   )
-// }
+const DataTable = ({ marketData }: { marketData: MarketInfoDataType[] }) => {
+  return (
+    <div className='w-full  bg-black rounded-lg border-collapse border border-zinc-800'>
+      <table className='w-full h-full bg-black p-2 border-collapse rounded-lg '>
+        <tr className='text-xs font-bold text-zinc-500 text-left'>
+          <th className='pl-2 w-1/3 border-b border-zinc-800 py-2'>
+            Total Trade
+          </th>
+          <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
+            66323225
+          </td>
+          <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
+            987454
+          </td>
+        </tr>
+        <tr className='text-xs font-bold text-zinc-500 text-left'>
+          <th className='pl-2 w-1/3 py-2 border-b border-zinc-800'>
+            Total Volume
+          </th>
+          <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
+            1.6846
+          </td>
+          <td className='pl-2 w-1/3 py-2 border-b border-zinc-800 bg-zinc-900/50'>
+            3216846231
+          </td>
+        </tr>
+        <tr className='text-xs font-bold text-zinc-500 text-left'>
+          <th className='pl-2 w-1/3 py-2 '>Total Volume Mn</th>
+          <td className='pl-2 w-1/3 py-2 bg-zinc-900/50'>321684</td>
+          <td className='pl-2 w-1/3 py-2 bg-zinc-900/50'>1684984651</td>
+        </tr>
+      </table>
+    </div>
+  )
+}
 
 export default MarketIndex

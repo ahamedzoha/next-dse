@@ -53,7 +53,7 @@ interface DashboardContextProviderProps {
   children: React.ReactNode
 }
 
-const CACHE_TTL = 200 // cache time-to-live in seconds
+const CACHE_TTL = 300 // cache time-to-live in seconds
 
 export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
   children,
