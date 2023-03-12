@@ -7,6 +7,7 @@ import {
   MarketIndexes,
 } from '@/contexts/dashboard-overview.context'
 import clsxm from '@/lib/clsxm'
+import IndexTimeSeriesChart from './index-timeseries-chart'
 
 const MarketIndex = () => {
   const { state, dispatch } = useContext(DashboardContext)
@@ -44,7 +45,7 @@ const MarketIndex = () => {
   }
 
   return (
-    <div className='bg-zinc-900 h-96 rounded-lg'>
+    <div className='bg-zinc-900 h-auto rounded-lg'>
       {/* container */}
       <div className='w-full h-full px-4 py-4'>
         <Tab.Group
@@ -74,7 +75,17 @@ const MarketIndex = () => {
             {state.allMarketIndexes.map((marketIndex, indexPosition) => (
               <Tab.Panel key={indexPosition}>
                 <div className='flex w-full h-full flex-col space-y-2'>
-                  <h2>{`${marketIndex}`.toUpperCase()}</h2>
+                  {/* <h2>{`${marketIndex}`.toUpperCase()}</h2> */}
+
+                  {state.loading ? (
+                    <span>Loading</span>
+                  ) : (
+                    <IndexTimeSeriesChart marketData={state.activeMarketData} />
+                  )}
+                  <div className='w-full'>
+                    <span>text</span>
+                  </div>
+
                   {/* <DataTable item={marketIndex} /> */}
                 </div>
               </Tab.Panel>

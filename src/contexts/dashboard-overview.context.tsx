@@ -38,7 +38,7 @@ interface State {
 }
 
 const initialState: State = {
-  activeMarketIndex: MarketIndexes.DS30,
+  activeMarketIndex: MarketIndexes.DSEX,
   allMarketIndexes: Object.values(MarketIndexes),
   activeMarketData: [],
   loading: true,
@@ -53,7 +53,7 @@ interface DashboardContextProviderProps {
   children: React.ReactNode
 }
 
-const CACHE_TTL = 20 // cache time-to-live in seconds
+const CACHE_TTL = 200 // cache time-to-live in seconds
 
 export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
   children,
@@ -72,6 +72,8 @@ export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
   }, initialState)
 
   const getData = async () => {
+    dispatch({ type: 'SET_LOADING', payload: true })
+
     const { activeMarketIndex } = state
     const cachedData = cache[activeMarketIndex]
     if (cachedData && Date.now() - cachedData.timestamp < CACHE_TTL * 1000) {
@@ -81,7 +83,7 @@ export const DashboardContextProvider: FC<DashboardContextProviderProps> = ({
     }
 
     const response = await fetch(
-      `/api/v1/latest-market-index-information?index=${activeMarketIndex}`,
+      `/api/v1/latest-market-index-information/${activeMarketIndex}`,
       {
         method: 'GET',
         headers: {

@@ -15,37 +15,27 @@ export const getMarketInfoData = async (
     const db = app.firestore()
 
     const now = new Date()
-    const UTC_OFFSET = 6 // UTC offset for Bangladesh time
-    const startHour = 10
-    const endHour = 15
-    // Get the start of today based on GMT+6 and set the hour to 10am
+
+    // If today is Friday or Saturday, set the start of today to the last available market day (Thursday)
+    const dayOfWeek = now.getUTCDay()
+    const isMarketOpen = dayOfWeek >= 1 && dayOfWeek <= 4 // Monday to Thursday
+    const daysToSubtract = isMarketOpen ? 0 : dayOfWeek === 0 ? 2 : 1 // If today is Sunday, subtract 2 days, otherwise subtract 1 day
     const startOfToday = new Date(
       Date.UTC(
         now.getUTCFullYear(),
         now.getUTCMonth(),
-        now.getUTCDate(),
-        startHour + UTC_OFFSET,
+        now.getUTCDate() - daysToSubtract,
+        4,
         0,
         0
-      )
-    )
-    // Get the end of today based on GMT+6 and set the hour to 3pm
-    const endOfToday = new Date(
-      Date.UTC(
-        now.getUTCFullYear(),
-        now.getUTCMonth(),
-        now.getUTCDate(),
-        endHour + UTC_OFFSET,
-        0,
-        0
-      )
+      ) // Market opens at 10 AM local time (4 AM UTC)
     )
 
     const querySnapshot = await db
       .collection(`/market-indexes/${index}/index-data`)
       .where('timestamp', '>=', startOfToday)
-      .where('timestamp', '<=', endOfToday)
       .orderBy('timestamp', 'desc')
+      .limit(60)
       .get()
 
     const latestData: MarketInfoData = querySnapshot.docs.map((doc) => {

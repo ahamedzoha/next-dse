@@ -16,7 +16,7 @@ const Dashboard = async () => {
   const session = await getServerSession(authOptions)
 
   const { data: tickerdata, timestamp } = await getStockData(session?.user?.id)
-
+  // console.log(tickerdata)
   // const data = await fetch(`${process.env.URL}/api/testapi`)
   // const responseData = await data.json()
   // console.log(responseData)
